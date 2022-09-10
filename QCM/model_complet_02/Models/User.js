@@ -9,3 +9,53 @@
   }
   
 */
+
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
+
+const UserSchema = new Schema({
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+    validate: value => {
+      if(value === "" || value.length <= 2){
+        throw new Error("champ vide ou trop court")
+      }
+    },
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+    validate: value => {
+      if(value === "" || value.length <= 2){
+        throw new Error("champ vide ou trop court")
+      }
+    },
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+    validate: value => {
+      if(value === "" || value.length < 4){
+        throw new Error("champ vide ou trop court")
+      }
+    },
+  },
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+    validate: value => {
+      if(value === "" || value.length < 4){
+        throw new Error("champ vide ou trop court")
+      }
+    },
+  },
+});
+
+const UserModel = model("users", UserSchema);
+export default UserModel
