@@ -12,13 +12,10 @@ block content
             if message
                 .ui.error.message
                     p= message
-            form.ui.large.form(method="post", action="/")
+            form.ui.large.form(method="post", action="/login")
                 .ui.stacked.segment
-                    +field('text', 'firstName', 'First name')
-                    +field('text', 'lastName', 'Last name')
                     +field('email', 'email', 'your.email@address.tld')
                     +field('password', 'password', 'Password')
-                    +field('password', 'password_confirm', 'Confirm password')
                     button(type="submit").ui.fluid.large.teal.submit.button Login
 
 mixin field(type, name, placeholder)
